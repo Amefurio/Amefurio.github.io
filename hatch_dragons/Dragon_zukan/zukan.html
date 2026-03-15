@@ -171,7 +171,7 @@
     </div>
   </a>
 
-  <!-- ★ 新規追加：サンブルーム -->
+  <!-- サンブルーム -->
   <a href="../dragon/sunbloom.html" class="dragon-link">
     <div class="dragon" data-tags="forestlake common earth plant"
          data-name="サンブルーム">
@@ -180,7 +180,7 @@
     </div>
   </a>
 
-  <!-- ★ 新規追加：ストライプ・ホバーダーツ -->
+  <!-- ストライプ・ホバーダーツ -->
   <a href="../dragon/hoverdarts.html" class="dragon-link">
     <div class="dragon" data-tags="forestlake uncommon wind insect"
          data-name="ストライプ・ホバーダーツ">
@@ -189,7 +189,7 @@
     </div>
   </a>
 
-  <!-- ★ 新規追加：グレー・フィールドペイサー -->
+  <!-- グレー・フィールドペイサー -->
   <a href="../dragon/fieldpacer.html" class="dragon-link">
     <div class="dragon" data-tags="grassland common earth mammal"
          data-name="グレー・フィールドペイサー">
@@ -200,11 +200,6 @@
 
 </div>
 
-<!-- もっと見る -->
-<button id="loadMore" style="padding:10px 20px; margin:20px auto; display:block;">
-  もっと見る
-</button>
-
 <p style="margin-top:40px;"><a href="../index.html">← トップページに戻る</a></p>
 
 <script>
@@ -212,10 +207,8 @@
   const dragons = document.querySelectorAll('.dragon');
   const searchBox = document.getElementById('searchBox');
   const searchButton = document.getElementById('searchButton');
-  const loadMore = document.getElementById('loadMore');
 
   let activeFilters = [];
-  let visibleCount = 5; // 最初に表示する数
 
   // ボタン絞り込み
   buttons.forEach(btn => {
@@ -244,12 +237,6 @@
     applyFilters();
   });
 
-  // もっと見る
-  loadMore.addEventListener('click', () => {
-    visibleCount += 5;
-    updateVisibleDragons();
-  });
-
   // 絞り込み処理（descなし）
   function applyFilters() {
     const keyword = searchBox.value.toLowerCase();
@@ -266,28 +253,7 @@
           ? "block"
           : "none";
     });
-
-    visibleCount = 5;
-    updateVisibleDragons();
   }
-
-  // 表示数制御
-  function updateVisibleDragons() {
-    let shown = 0;
-
-    dragons.forEach(dragon => {
-      if (dragon.style.display !== "none") {
-        shown++;
-        dragon.style.display = shown <= visibleCount ? "block" : "none";
-      }
-    });
-
-    const totalVisible = [...dragons].filter(d => d.style.display !== "none").length;
-    loadMore.style.display = visibleCount < totalVisible ? "block" : "none";
-  }
-
-  // 初期表示
-  applyFilters();
 </script>
 
 </body>
