@@ -81,14 +81,12 @@
 
 <p><a href="../index.html">← トップページに戻る</a></p>
 
-<!-- フリーワード検索 -->
 <div style="margin-bottom:20px;">
   <label>フリーワード検索：</label><br>
   <input id="searchBox" type="text" placeholder="名前で検索">
   <button id="searchButton" style="padding:6px 12px; margin-top:5px;">検索</button>
 </div>
 
-<!-- グループ -->
 <details>
   <summary>グループで絞り込み</summary>
   <button class="filter-btn" data-filter="forest">森林</button>
@@ -103,7 +101,6 @@
   <button class="filter-btn" data-filter="folklore">民話</button>
 </details>
 
-<!-- レアリティ -->
 <details>
   <summary>レアリティで絞り込み</summary>
   <button class="filter-btn" data-filter="common">コモン</button>
@@ -113,7 +110,6 @@
   <button class="filter-btn" data-filter="legendary">レジェンダリー</button>
 </details>
 
-<!-- 属性 -->
 <details>
   <summary>属性で絞り込み</summary>
   <button class="filter-btn" data-filter="earth">土</button>
@@ -121,7 +117,6 @@
   <button class="filter-btn" data-filter="water">水</button>
 </details>
 
-<!-- タイプ（昆虫追加） -->
 <details>
   <summary>タイプで絞り込み</summary>
   <button class="filter-btn" data-filter="mammal">哺乳類</button>
@@ -129,13 +124,13 @@
   <button class="filter-btn" data-filter="reptile">爬虫類</button>
   <button class="filter-btn" data-filter="plant">植物</button>
   <button class="filter-btn" data-filter="insect">昆虫</button>
+  <button class="filter-btn" data-filter="fish">魚類</button>
 </details>
 
 <hr>
 
 <div class="dragon-list">
 
-  <!-- ロックテイル -->
   <a href="../dragon/rocktail.html" class="dragon-link">
     <div class="dragon" data-tags="forest common earth reptile"
          data-name="ロックテイル">
@@ -144,7 +139,6 @@
     </div>
   </a>
 
-  <!-- ウッドピップ -->
   <a href="../dragon/woodpip.html" class="dragon-link">
     <div class="dragon" data-tags="forest common wind bird"
          data-name="ウッドピップ">
@@ -153,7 +147,6 @@
     </div>
   </a>
 
-  <!-- ソフトフット -->
   <a href="../dragon/softfoot.html" class="dragon-link">
     <div class="dragon" data-tags="forest uncommon earth mammal"
          data-name="ソフトフット">
@@ -162,7 +155,6 @@
     </div>
   </a>
 
-  <!-- レッド･パインウィング -->
   <a href="../dragon/red_pinewing.html" class="dragon-link">
     <div class="dragon" data-tags="forest uncommon wind bird"
          data-name="レッド･パインウィング">
@@ -171,7 +163,6 @@
     </div>
   </a>
 
-  <!-- サンブルーム -->
   <a href="../dragon/sunbloom.html" class="dragon-link">
     <div class="dragon" data-tags="forestlake common earth plant"
          data-name="サンブルーム">
@@ -180,7 +171,6 @@
     </div>
   </a>
 
-  <!-- ストライプ・ホバーダーツ -->
   <a href="../dragon/hoverdarts.html" class="dragon-link">
     <div class="dragon" data-tags="forestlake uncommon wind insect"
          data-name="ストライプ・ホバーダーツ">
@@ -189,12 +179,43 @@
     </div>
   </a>
 
-  <!-- グレー・フィールドペイサー -->
+  <a href="../dragon/firefin.html" class="dragon-link">
+    <div class="dragon" data-tags="forestlake uncommon water fish"
+         data-name="リード・ファイアフィン">
+      <p>リード・ファイアフィン（森の湖 / アンコモン / 水 / 魚類）</p>
+      <img src="../dragon/img/firefin.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/lakecutter.html" class="dragon-link">
+    <div class="dragon" data-tags="forestlake rare water bird"
+         data-name="レイクカッター">
+      <p>レイクカッター（森の湖 / レア / 水 / 鳥類）</p>
+      <img src="../dragon/img/lakecutter.jpeg">
+    </div>
+  </a>
+
   <a href="../dragon/fieldpacer.html" class="dragon-link">
     <div class="dragon" data-tags="grassland common earth mammal"
          data-name="グレー・フィールドペイサー">
       <p>グレー・フィールドペイサー（草原 / コモン / 土 / 哺乳類）</p>
       <img src="../dragon/img/fieldpacer.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/bluebell.html" class="dragon-link">
+    <div class="dragon" data-tags="grassland uncommon earth plant"
+         data-name="フックテイル・ブルーベル">
+      <p>フックテイル・ブルーベル（草原 / アンコモン / 土 / 植物）</p>
+      <img src="../dragon/img/bluebell.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/fieldhoof.html" class="dragon-link">
+    <div class="dragon" data-tags="grassland rare earth mammal"
+         data-name="グレート・フィールドフーフ">
+      <p>グレート・フィールドフーフ（草原 / レア / 土 / 哺乳類）</p>
+      <img src="../dragon/img/fieldhoof.jpeg">
     </div>
   </a>
 
@@ -210,7 +231,6 @@
 
   let activeFilters = [];
 
-  // ボタン絞り込み
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
@@ -227,17 +247,14 @@
     });
   });
 
-  // 入力した瞬間にも検索
   searchBox.addEventListener('input', () => {
     applyFilters();
   });
 
-  // 検索ボタン
   searchButton.addEventListener('click', () => {
     applyFilters();
   });
 
-  // 絞り込み処理（descなし）
   function applyFilters() {
     const keyword = searchBox.value.toLowerCase();
 
