@@ -10,30 +10,25 @@
     padding: 20px;
     background: #fafafa;
   }
-
   h1 {
     border-bottom: 3px solid #ccc;
     padding-bottom: 5px;
     margin-bottom: 10px;
   }
-
   a {
     color: #0066cc;
     text-decoration: none;
   }
-
   details {
     margin-bottom: 10px;
     background: #f0f0f0;
     padding: 10px;
     border-radius: 6px;
   }
-
   summary {
     cursor: pointer;
     font-weight: bold;
   }
-
   .filter-btn {
     margin: 5px;
     padding: 6px 12px;
@@ -42,17 +37,14 @@
     border-radius: 4px;
     cursor: pointer;
   }
-
   .filter-btn.active {
     background: #a0d0ff;
   }
-
   .dragon-link {
     text-decoration: none;
     color: inherit;
     display: block;
   }
-
   .dragon {
     padding: 10px;
     margin: 5px 0;
@@ -60,12 +52,10 @@
     border: 1px solid #ccc;
     border-radius: 6px;
   }
-
   .dragon img {
     width: 120px;
     border-radius: 6px;
   }
-
   #searchBox {
     width: 100%;
     padding: 8px;
@@ -93,12 +83,6 @@
   <button class="filter-btn" data-filter="forestlake">森の湖</button>
   <button class="filter-btn" data-filter="grassland">草原</button>
   <button class="filter-btn" data-filter="highmountain">高山</button>
-  <button class="filter-btn" data-filter="cave">洞窟</button>
-  <button class="filter-btn" data-filter="hige">ヒゲ</button>
-  <button class="filter-btn" data-filter="tropical">熱帯</button>
-  <button class="filter-btn" data-filter="friend">仲間</button>
-  <button class="filter-btn" data-filter="constellation">星座</button>
-  <button class="filter-btn" data-filter="folklore">民話</button>
 </details>
 
 <details>
@@ -125,6 +109,7 @@
   <button class="filter-btn" data-filter="plant">植物</button>
   <button class="filter-btn" data-filter="insect">昆虫</button>
   <button class="filter-btn" data-filter="fish">魚類</button>
+  <button class="filter-btn" data-filter="fungus">菌類</button>
 </details>
 
 <hr>
@@ -132,90 +117,121 @@
 <div class="dragon-list">
 
   <a href="../dragon/rocktail.html" class="dragon-link">
-    <div class="dragon" data-tags="forest common earth reptile"
-         data-name="ロックテイル">
+    <div class="dragon" data-tags="forest common earth reptile" data-name="ロックテイル">
       <p>ロックテイル（森林 / コモン / 土 / 爬虫類）</p>
       <img src="../dragon/img/rocktail.jpeg">
     </div>
   </a>
 
   <a href="../dragon/woodpip.html" class="dragon-link">
-    <div class="dragon" data-tags="forest common wind bird"
-         data-name="ウッドピップ">
+    <div class="dragon" data-tags="forest common wind bird" data-name="ウッドピップ">
       <p>ウッドピップ（森林 / コモン / 風 / 鳥類）</p>
       <img src="../dragon/img/woodpip.jpeg">
     </div>
   </a>
 
   <a href="../dragon/softfoot.html" class="dragon-link">
-    <div class="dragon" data-tags="forest uncommon earth mammal"
-         data-name="ソフトフット">
+    <div class="dragon" data-tags="forest uncommon earth mammal" data-name="ソフトフット">
       <p>ソフトフット（森林 / アンコモン / 土 / 哺乳類）</p>
       <img src="../dragon/img/softfoot.jpeg">
     </div>
   </a>
 
   <a href="../dragon/red_pinewing.html" class="dragon-link">
-    <div class="dragon" data-tags="forest uncommon wind bird"
-         data-name="レッド･パインウィング">
+    <div class="dragon" data-tags="forest uncommon wind bird" data-name="レッド･パインウィング">
       <p>レッド･パインウィング（森林 / アンコモン / 風 / 鳥類）</p>
       <img src="../dragon/img/red_pinewing.jpeg">
     </div>
   </a>
 
   <a href="../dragon/sunbloom.html" class="dragon-link">
-    <div class="dragon" data-tags="forestlake common earth plant"
-         data-name="サンブルーム">
+    <div class="dragon" data-tags="forestlake common earth plant" data-name="サンブルーム">
       <p>サンブルーム（森の湖 / コモン / 土 / 植物）</p>
       <img src="../dragon/img/sunbloom.jpeg">
     </div>
   </a>
 
   <a href="../dragon/hoverdarts.html" class="dragon-link">
-    <div class="dragon" data-tags="forestlake uncommon wind insect"
-         data-name="ストライプ・ホバーダーツ">
+    <div class="dragon" data-tags="forestlake uncommon wind insect" data-name="ストライプ・ホバーダーツ">
       <p>ストライプ・ホバーダーツ（森の湖 / アンコモン / 風 / 昆虫）</p>
       <img src="../dragon/img/hoverdarts.jpeg">
     </div>
   </a>
 
   <a href="../dragon/firefin.html" class="dragon-link">
-    <div class="dragon" data-tags="forestlake uncommon water fish"
-         data-name="リード・ファイアフィン">
+    <div class="dragon" data-tags="forestlake uncommon water fish" data-name="リード・ファイアフィン">
       <p>リード・ファイアフィン（森の湖 / アンコモン / 水 / 魚類）</p>
       <img src="../dragon/img/firefin.jpeg">
     </div>
   </a>
 
   <a href="../dragon/lakecutter.html" class="dragon-link">
-    <div class="dragon" data-tags="forestlake rare water bird"
-         data-name="レイクカッター">
+    <div class="dragon" data-tags="forestlake rare water bird" data-name="レイクカッター">
       <p>レイクカッター（森の湖 / レア / 水 / 鳥類）</p>
       <img src="../dragon/img/lakecutter.jpeg">
     </div>
   </a>
 
   <a href="../dragon/fieldpacer.html" class="dragon-link">
-    <div class="dragon" data-tags="grassland common earth mammal"
-         data-name="グレー・フィールドペイサー">
+    <div class="dragon" data-tags="grassland common earth mammal" data-name="グレー・フィールドペイサー">
       <p>グレー・フィールドペイサー（草原 / コモン / 土 / 哺乳類）</p>
       <img src="../dragon/img/fieldpacer.jpeg">
     </div>
   </a>
 
   <a href="../dragon/bluebell.html" class="dragon-link">
-    <div class="dragon" data-tags="grassland uncommon earth plant"
-         data-name="フックテイル・ブルーベル">
+    <div class="dragon" data-tags="grassland uncommon earth plant" data-name="フックテイル・ブルーベル">
       <p>フックテイル・ブルーベル（草原 / アンコモン / 土 / 植物）</p>
       <img src="../dragon/img/bluebell.jpeg">
     </div>
   </a>
 
   <a href="../dragon/fieldhoof.html" class="dragon-link">
-    <div class="dragon" data-tags="grassland rare earth mammal"
-         data-name="グレート・フィールドフーフ">
+    <div class="dragon" data-tags="grassland rare earth mammal" data-name="グレート・フィールドフーフ">
       <p>グレート・フィールドフーフ（草原 / レア / 土 / 哺乳類）</p>
       <img src="../dragon/img/fieldhoof.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/scruffhorn.html" class="dragon-link">
+    <div class="dragon" data-tags="highmountain common earth mammal" data-name="スクラフホーン">
+      <p>スクラフホーン（高山 / コモン / 土 / 哺乳類）</p>
+      <img src="../dragon/img/scruffhorn.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/hunterwing.html" class="dragon-link">
+    <div class="dragon" data-tags="highmountain common wind bird" data-name="ロイヤル・ハンターウィング">
+      <p>ロイヤル・ハンターウィング（高山 / コモン / 風 / 鳥類）</p>
+      <img src="../dragon/img/hunterwing.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/umbrella.html" class="dragon-link">
+    <div class="dragon" data-tags="highmountain uncommon earth fungus" data-name="スポッティ・アンブレラ">
+      <p>スポッティ・アンブレラ（高山 / アンコモン / 土 / 菌類）</p>
+      <img src="../dragon/img/umbrella.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/alpangel.html" class="dragon-link">
+    <div class="dragon" data-tags="highmountain rare earth mammal" data-name="アルプ・エンジェル">
+      <p>アルプ・エンジェル（高山 / レア / 土 / 哺乳類）</p>
+      <img src="../dragon/img/alpangel.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/rainbowfin.html" class="dragon-link">
+    <div class="dragon" data-tags="highmountain epic water" data-name="レインボーフィン">
+      <p>レインボーフィン（高山 / エピック / 水）</p>
+      <img src="../dragon/img/rainbowfin.jpeg">
+    </div>
+  </a>
+
+  <a href="../dragon/sapphireflutter.html" class="dragon-link">
+    <div class="dragon" data-tags="highmountain legendary wind" data-name="サファイア・フラッター">
+      <p>サファイア・フラッター（高山 / レジェンダリー / 風）</p>
+      <img src="../dragon/img/sapphireflutter.jpeg">
     </div>
   </a>
 
