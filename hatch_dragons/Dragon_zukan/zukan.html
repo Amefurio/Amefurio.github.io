@@ -47,6 +47,12 @@
     background: #a0d0ff;
   }
 
+  .dragon-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
   .dragon {
     padding: 10px;
     margin: 5px 0;
@@ -118,37 +124,45 @@
 
 <div class="dragon-list">
 
-  <!-- 例：ロックテイル -->
-  <div class="dragon" data-tags="forest common earth"
-       data-name="ロックテイル"
-       data-desc="岩場を好む小型ドラゴン">
-    <p>ロックテイル（森林 / コモン / 土）</p>
-    <img src="../dragon/img/rocktail.jpeg">
-  </div>
+  <!-- ロックテイル -->
+  <a href="../dragon/pages/rocktail.html" class="dragon-link">
+    <div class="dragon" data-tags="forest common earth"
+         data-name="ロックテイル"
+         data-desc="岩場を好む小型ドラゴン">
+      <p>ロックテイル（森林 / コモン / 土）</p>
+      <img src="../dragon/img/rocktail.jpeg">
+    </div>
+  </a>
 
-  <!-- 例：ウッドピップ -->
-  <div class="dragon" data-tags="forest uncommon wind"
-       data-name="ウッドピップ"
-       data-desc="木の上で生活するドラゴン">
-    <p>ウッドピップ（森林 / アンコモン / 風）</p>
-    <img src="../dragon/img/woodpip.jpeg">
-  </div>
+  <!-- ウッドピップ -->
+  <a href="../dragon/pages/woodpip.html" class="dragon-link">
+    <div class="dragon" data-tags="forest uncommon wind"
+         data-name="ウッドピップ"
+         data-desc="木の上で生活するドラゴン">
+      <p>ウッドピップ（森林 / アンコモン / 風）</p>
+      <img src="../dragon/img/woodpip.jpeg">
+    </div>
+  </a>
 
-  <!-- 例：フレイムホーン -->
-  <div class="dragon" data-tags="highmountain rare earth"
-       data-name="フレイムホーン"
-       data-desc="高山の火口付近に生息するドラゴン">
-    <p>フレイムホーン（高山 / レア / 土）</p>
-    <img src="../dragon/img/flamehorn.jpeg">
-  </div>
+  <!-- フレイムホーン -->
+  <a href="../dragon/pages/flamehorn.html" class="dragon-link">
+    <div class="dragon" data-tags="highmountain rare earth"
+         data-name="フレイムホーン"
+         data-desc="高山の火口付近に生息するドラゴン">
+      <p>フレイムホーン（高山 / レア / 土）</p>
+      <img src="../dragon/img/flamehorn.jpeg">
+    </div>
+  </a>
 
-  <!-- 例：アクアリング -->
-  <div class="dragon" data-tags="forestlake common water"
-       data-name="アクアリング"
-       data-desc="森の湖に住む水属性ドラゴン">
-    <p>アクアリング（森の湖 / コモン / 水）</p>
-    <img src="../dragon/img/aquaring.jpeg">
-  </div>
+  <!-- アクアリング -->
+  <a href="../dragon/pages/aquaring.html" class="dragon-link">
+    <div class="dragon" data-tags="forestlake common water"
+         data-name="アクアリング"
+         data-desc="森の湖に住む水属性ドラゴン">
+      <p>アクアリング（森の湖 / コモン / 水）</p>
+      <img src="../dragon/img/aquaring.jpeg">
+    </div>
+  </a>
 
 </div>
 
@@ -167,4 +181,41 @@
       const filter = btn.dataset.filter;
 
       if (activeFilters.includes(filter)) {
-       
+        activeFilters = activeFilters.filter(f => f !== filter);
+        btn.classList.remove("active");
+      } else {
+        activeFilters.push(filter);
+        btn.classList.add("active");
+      }
+
+      applyFilters();
+    });
+  });
+
+  // フリーワード検索
+  searchBox.addEventListener('input', () => {
+    applyFilters();
+  });
+
+  // 絞り込み処理（ボタン＋検索）
+  function applyFilters() {
+    const keyword = searchBox.value.toLowerCase();
+
+    dragons.forEach(dragon => {
+      const tags = dragon.dataset.tags.split(" ");
+      const name = dragon.dataset.name.toLowerCase();
+      const desc = dragon.dataset.desc.toLowerCase();
+
+      const matchFilter = activeFilters.every(f => tags.includes(f));
+      const matchKeyword = name.includes(keyword) || desc.includes(keyword);
+
+      dragon.style.display =
+        (matchFilter || activeFilters.length === 0) && matchKeyword
+          ? "block"
+          : "none";
+    });
+  }
+</script>
+
+</body>
+</html>
