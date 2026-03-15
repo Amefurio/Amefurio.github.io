@@ -65,47 +65,60 @@
 <details>
   <summary>グループで絞り込み</summary>
   <button class="filter-btn" data-filter="forest">森林</button>
-  <button class="filter-btn" data-filter="mountain">森の湖</button>
-  <button class="filter-btn" data-filter="lake">草原</button>
+  <button class="filter-btn" data-filter="forestlake">森の湖</button>
+  <button class="filter-btn" data-filter="grassland">草原</button>
+  <button class="filter-btn" data-filter="highmountain">高山</button>
+  <button class="filter-btn" data-filter="cave">洞窟</button>
+  <button class="filter-btn" data-filter="hige">ヒゲ</button>
+  <button class="filter-btn" data-filter="tropical">熱帯</button>
+  <button class="filter-btn" data-filter="friend">仲間</button>
+  <button class="filter-btn" data-filter="constellation">星座</button>
+  <button class="filter-btn" data-filter="folklore">民話</button>
 </details>
 
 <!-- レアリティ -->
 <details>
   <summary>レアリティで絞り込み</summary>
   <button class="filter-btn" data-filter="common">コモン</button>
+  <button class="filter-btn" data-filter="uncommon">アンコモン</button>
   <button class="filter-btn" data-filter="rare">レア</button>
   <button class="filter-btn" data-filter="epic">エピック</button>
+  <button class="filter-btn" data-filter="legendary">レジェンダリー</button>
 </details>
 
 <!-- 属性 -->
 <details>
   <summary>属性で絞り込み</summary>
-  <button class="filter-btn" data-filter="fire">炎</button>
+  <button class="filter-btn" data-filter="earth">土</button>
+  <button class="filter-btn" data-filter="wind">風</button>
   <button class="filter-btn" data-filter="water">水</button>
-  <button class="filter-btn" data-filter="dark">闇</button>
 </details>
 
 <hr>
 
 <div class="dragon-list">
 
-  <div class="dragon" data-tags="forest common">
-    <p>ロックテイル（森林 / コモン）</p>
+  <!-- 例：ロックテイル（森林 / コモン / 土） -->
+  <div class="dragon" data-tags="forest common earth">
+    <p>ロックテイル（森林 / コモン / 土）</p>
     <img src="../dragon/img/rocktail.jpeg">
   </div>
 
-  <div class="dragon" data-tags="forest common">
-    <p>ウッドピップ（森林 / コモン）</p>
+  <!-- 例：ウッドピップ（森林 / アンコモン / 風） -->
+  <div class="dragon" data-tags="forest uncommon wind">
+    <p>ウッドピップ（森林 / アンコモン / 風）</p>
     <img src="../dragon/img/woodpip.jpeg">
   </div>
 
-  <div class="dragon" data-tags="mountain fire rare">
-    <p>フレイムホーン（山 / レア / 炎）</p>
+  <!-- 例：フレイムホーン（高山 / レア / 土） -->
+  <div class="dragon" data-tags="highmountain rare earth">
+    <p>フレイムホーン（高山 / レア / 土）</p>
     <img src="../dragon/img/flamehorn.jpeg">
   </div>
 
-  <div class="dragon" data-tags="lake water common">
-    <p>アクアリング（湖 / コモン / 水）</p>
+  <!-- 例：アクアリング（森の湖 / コモン / 水） -->
+  <div class="dragon" data-tags="forestlake common water">
+    <p>アクアリング（森の湖 / コモン / 水）</p>
     <img src="../dragon/img/aquaring.jpeg">
   </div>
 
@@ -121,7 +134,6 @@
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
 
-      // ON/OFF
       if (activeFilters.includes(filter)) {
         activeFilters = activeFilters.filter(f => f !== filter);
         btn.classList.remove("active");
@@ -130,7 +142,6 @@
         btn.classList.add("active");
       }
 
-      // 絞り込み
       dragons.forEach(dragon => {
         const tags = dragon.dataset.tags.split(" ");
         const match = activeFilters.every(f => tags.includes(f));
