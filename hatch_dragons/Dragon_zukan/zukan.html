@@ -1,177 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>ドラゴン図鑑</title>
-
-<style>
-  body {
-    font-family: sans-serif;
-    padding: 20px;
-    background: #fafafa;
-  }
-
-  h1 {
-    border-bottom: 3px solid #ccc;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-  }
-
-  a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-
-  details {
-    margin-bottom: 10px;
-    background: #f0f0f0;
-    padding: 10px;
-    border-radius: 6px;
-  }
-
-  summary {
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .filter-btn {
-    margin: 5px;
-    padding: 6px 12px;
-    border: none;
-    background: #d0e8ff;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .filter-btn.active {
-    background: #a0d0ff;
-  }
-
-  .dragon-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .dragon {
-    padding: 10px;
-    margin: 5px 0;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-
-  .dragon img {
-    width: 120px;
-    border-radius: 6px;
-  }
-
-  #searchBox {
-    width: 100%;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-</style>
-</head>
-
-<body>
-
-<h1>ドラゴン図鑑</h1>
-
-<p><a href="../index.html">← トップページに戻る</a></p>
-
-<!-- フリーワード検索 -->
-<div style="margin-bottom:20px;">
-  <label>フリーワード検索：</label><br>
-  <input id="searchBox" type="text" placeholder="名前・説明など">
-</div>
-
-<!-- グループ -->
-<details>
-  <summary>グループで絞り込み</summary>
-  <button class="filter-btn" data-filter="forest">森林</button>
-  <button class="filter-btn" data-filter="forestlake">森の湖</button>
-  <button class="filter-btn" data-filter="grassland">草原</button>
-  <button class="filter-btn" data-filter="highmountain">高山</button>
-  <button class="filter-btn" data-filter="cave">洞窟</button>
-  <button class="filter-btn" data-filter="hige">ヒゲ</button>
-  <button class="filter-btn" data-filter="tropical">熱帯</button>
-  <button class="filter-btn" data-filter="friend">仲間</button>
-  <button class="filter-btn" data-filter="constellation">星座</button>
-  <button class="filter-btn" data-filter="folklore">民話</button>
-</details>
-
-<!-- レアリティ -->
-<details>
-  <summary>レアリティで絞り込み</summary>
-  <button class="filter-btn" data-filter="common">コモン</button>
-  <button class="filter-btn" data-filter="uncommon">アンコモン</button>
-  <button class="filter-btn" data-filter="rare">レア</button>
-  <button class="filter-btn" data-filter="epic">エピック</button>
-  <button class="filter-btn" data-filter="legendary">レジェンダリー</button>
-</details>
-
-<!-- 属性 -->
-<details>
-  <summary>属性で絞り込み</summary>
-  <button class="filter-btn" data-filter="earth">土</button>
-  <button class="filter-btn" data-filter="wind">風</button>
-  <button class="filter-btn" data-filter="water">水</button>
-</details>
-
-<hr>
-
-<div class="dragon-list">
-
-  <!-- ロックテイル -->
-  <a href="../dragon/pages/rocktail.html" class="dragon-link">
-    <div class="dragon" data-tags="forest common earth"
-         data-name="ロックテイル"
-         data-desc="岩場を好む小型ドラゴン">
-      <p>ロックテイル（森林 / コモン / 土）</p>
-      <img src="../dragon/img/rocktail.jpeg">
-    </div>
-  </a>
-
-  <!-- ウッドピップ -->
-  <a href="../dragon/pages/woodpip.html" class="dragon-link">
-    <div class="dragon" data-tags="forest uncommon wind"
-         data-name="ウッドピップ"
-         data-desc="木の上で生活するドラゴン">
-      <p>ウッドピップ（森林 / アンコモン / 風）</p>
-      <img src="../dragon/img/woodpip.jpeg">
-    </div>
-  </a>
-
-  <!-- フレイムホーン -->
-  <a href="../dragon/pages/flamehorn.html" class="dragon-link">
-    <div class="dragon" data-tags="highmountain rare earth"
-         data-name="フレイムホーン"
-         data-desc="高山の火口付近に生息するドラゴン">
-      <p>フレイムホーン（高山 / レア / 土）</p>
-      <img src="../dragon/img/flamehorn.jpeg">
-    </div>
-  </a>
-
-  <!-- アクアリング -->
-  <a href="../dragon/pages/aquaring.html" class="dragon-link">
-    <div class="dragon" data-tags="forestlake common water"
-         data-name="アクアリング"
-         data-desc="森の湖に住む水属性ドラゴン">
-      <p>アクアリング（森の湖 / コモン / 水）</p>
-      <img src="../dragon/img/aquaring.jpeg">
-    </div>
-  </a>
-
-</div>
-
-<p style="margin-top:40px;"><a href="../index.html">← トップページに戻る</a></p>
-
 <script>
   const buttons = document.querySelectorAll('.filter-btn');
   const dragons = document.querySelectorAll('.dragon');
   const searchBox = document.getElementById('searchBox');
+  const searchButton = document.getElementById('searchButton');
 
   let activeFilters = [];
 
@@ -192,8 +23,13 @@
     });
   });
 
-  // フリーワード検索
+  // 入力した瞬間にも検索（リアルタイム）
   searchBox.addEventListener('input', () => {
+    applyFilters();
+  });
+
+  // 検索ボタンを押したときにも検索
+  searchButton.addEventListener('click', () => {
     applyFilters();
   });
 
@@ -216,6 +52,3 @@
     });
   }
 </script>
-
-</body>
-</html>
