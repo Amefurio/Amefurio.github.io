@@ -84,7 +84,7 @@
 <!-- フリーワード検索 -->
 <div style="margin-bottom:20px;">
   <label>フリーワード検索：</label><br>
-  <input id="searchBox" type="text" placeholder="名前・説明など">
+  <input id="searchBox" type="text" placeholder="名前で検索">
   <button id="searchButton" style="padding:6px 12px; margin-top:5px;">検索</button>
 </div>
 
@@ -121,7 +121,7 @@
   <button class="filter-btn" data-filter="water">水</button>
 </details>
 
-<!-- タイプ（新規追加） -->
+<!-- タイプ -->
 <details>
   <summary>タイプで絞り込み</summary>
   <button class="filter-btn" data-filter="mammal">哺乳類</button>
@@ -133,7 +133,7 @@
 <hr>
 
 <div class="dragon-list">
-<!-- 森林　-->
+
   <!-- ロックテイル -->
   <a href="../dragon/rocktail.html" class="dragon-link">
     <div class="dragon" data-tags="forest common earth reptile"
@@ -143,7 +143,7 @@
     </div>
   </a>
 
-  <!-- ウッドピップ（例：鳥類） -->
+  <!-- ウッドピップ -->
   <a href="../dragon/woodpip.html" class="dragon-link">
     <div class="dragon" data-tags="forest common wind bird"
          data-name="ウッドピップ">
@@ -156,21 +156,26 @@
   <a href="../dragon/softfoot.html" class="dragon-link">
     <div class="dragon" data-tags="forest uncommon earth mammal"
          data-name="ソフトフット">
-      <p>ソフトフット（森林 / アンコモン / 土 / 爬虫類）</p>
-      <img src="../dragon/img/flamehorn.jpeg">
+      <p>ソフトフット（森林 / アンコモン / 土 / 哺乳類）</p>
+      <img src="../dragon/img/softfoot.jpeg">
     </div>
   </a>
 
-  <!-- レッド･パインウイング -->
-  <a href="../dragon/aquaring.html" class="dragon-link">
+  <!-- レッド･パインウィング -->
+  <a href="../dragon/red_pinewing.html" class="dragon-link">
     <div class="dragon" data-tags="forest uncommon wind bird"
-         data-name="レッド･パインウィング>
-      <p>レッド･パインウィング（森林 / アンコモン / 土 / 鳥類）</p>
-      <img src="../dragon/img/aquaring.jpeg">
+         data-name="レッド･パインウィング">
+      <p>レッド･パインウィング（森林 / アンコモン / 風 / 鳥類）</p>
+      <img src="../dragon/img/red_pinewing.jpeg">
     </div>
   </a>
 
 </div>
+
+<!-- もっと見る -->
+<button id="loadMore" style="padding:10px 20px; margin:20px auto; display:block;">
+  もっと見る
+</button>
 
 <p style="margin-top:40px;"><a href="../index.html">← トップページに戻る</a></p>
 
@@ -179,8 +184,10 @@
   const dragons = document.querySelectorAll('.dragon');
   const searchBox = document.getElementById('searchBox');
   const searchButton = document.getElementById('searchButton');
+  const loadMore = document.getElementById('loadMore');
 
   let activeFilters = [];
+  let visibleCount = 5; // 最初に表示する数
 
   // ボタン絞り込み
   buttons.forEach(btn => {
@@ -204,29 +211,55 @@
     applyFilters();
   });
 
-  // 検索ボタンを押したときにも検索
+  // 検索ボタン
   searchButton.addEventListener('click', () => {
     applyFilters();
   });
 
-  // 絞り込み処理（ボタン＋検索）
+  // もっと見る
+  loadMore.addEventListener('click', () => {
+    visibleCount += 5;
+    updateVisibleDragons();
+  });
+
+  // 絞り込み処理（descなし）
   function applyFilters() {
     const keyword = searchBox.value.toLowerCase();
 
     dragons.forEach(dragon => {
       const tags = dragon.dataset.tags.split(" ");
       const name = dragon.dataset.name.toLowerCase();
-      const desc = dragon.dataset.desc.toLowerCase();
 
       const matchFilter = activeFilters.every(f => tags.includes(f));
-      const matchKeyword = name.includes(keyword) || desc.includes(keyword);
+      const matchKeyword = name.includes(keyword);
 
       dragon.style.display =
         (matchFilter || activeFilters.length === 0) && matchKeyword
           ? "block"
           : "none";
     });
+
+    visibleCount = 5;
+    updateVisibleDragons();
   }
+
+  // 表示数制御
+  function updateVisibleDragons() {
+    let shown = 0;
+
+    dragons.forEach(dragon => {
+      if (dragon.style.display !== "none") {
+        shown++;
+        dragon.style.display = shown <= visibleCount ? "block" : "none";
+      }
+    });
+
+    const totalVisible = [...dragons].filter(d => d.style.display !== "none").length;
+    loadMore.style.display = visibleCount < totalVisible ? "block" : "none";
+  }
+
+  // 初期表示
+  applyFilters();
 </script>
 
 </body>
