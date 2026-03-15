@@ -14,7 +14,12 @@
   h1 {
     border-bottom: 3px solid #ccc;
     padding-bottom: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: #0066cc;
+    text-decoration: none;
   }
 
   details {
@@ -54,12 +59,27 @@
     width: 120px;
     border-radius: 6px;
   }
+
+  #searchBox {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
 </style>
 </head>
 
 <body>
 
 <h1>ドラゴン図鑑</h1>
+
+<p><a href="../index.html">← トップページに戻る</a></p>
+
+<!-- フリーワード検索 -->
+<div style="margin-bottom:20px;">
+  <label>フリーワード検索：</label><br>
+  <input id="searchBox" type="text" placeholder="名前・説明など">
+</div>
 
 <!-- グループ -->
 <details>
@@ -98,60 +118,53 @@
 
 <div class="dragon-list">
 
-  <!-- 例：ロックテイル（森林 / コモン / 土） -->
-  <div class="dragon" data-tags="forest common earth">
+  <!-- 例：ロックテイル -->
+  <div class="dragon" data-tags="forest common earth"
+       data-name="ロックテイル"
+       data-desc="岩場を好む小型ドラゴン">
     <p>ロックテイル（森林 / コモン / 土）</p>
     <img src="../dragon/img/rocktail.jpeg">
   </div>
 
-  <!-- 例：ウッドピップ（森林 / アンコモン / 風） -->
-  <div class="dragon" data-tags="forest uncommon wind">
+  <!-- 例：ウッドピップ -->
+  <div class="dragon" data-tags="forest uncommon wind"
+       data-name="ウッドピップ"
+       data-desc="木の上で生活するドラゴン">
     <p>ウッドピップ（森林 / アンコモン / 風）</p>
     <img src="../dragon/img/woodpip.jpeg">
   </div>
 
-  <!-- 例：フレイムホーン（高山 / レア / 土） -->
-  <div class="dragon" data-tags="highmountain rare earth">
+  <!-- 例：フレイムホーン -->
+  <div class="dragon" data-tags="highmountain rare earth"
+       data-name="フレイムホーン"
+       data-desc="高山の火口付近に生息するドラゴン">
     <p>フレイムホーン（高山 / レア / 土）</p>
     <img src="../dragon/img/flamehorn.jpeg">
   </div>
 
-  <!-- 例：アクアリング（森の湖 / コモン / 水） -->
-  <div class="dragon" data-tags="forestlake common water">
+  <!-- 例：アクアリング -->
+  <div class="dragon" data-tags="forestlake common water"
+       data-name="アクアリング"
+       data-desc="森の湖に住む水属性ドラゴン">
     <p>アクアリング（森の湖 / コモン / 水）</p>
     <img src="../dragon/img/aquaring.jpeg">
   </div>
 
 </div>
 
+<p style="margin-top:40px;"><a href="../index.html">← トップページに戻る</a></p>
+
 <script>
   const buttons = document.querySelectorAll('.filter-btn');
   const dragons = document.querySelectorAll('.dragon');
+  const searchBox = document.getElementById('searchBox');
 
   let activeFilters = [];
 
+  // ボタン絞り込み
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
 
       if (activeFilters.includes(filter)) {
-        activeFilters = activeFilters.filter(f => f !== filter);
-        btn.classList.remove("active");
-      } else {
-        activeFilters.push(filter);
-        btn.classList.add("active");
-      }
-
-      dragons.forEach(dragon => {
-        const tags = dragon.dataset.tags.split(" ");
-        const match = activeFilters.every(f => tags.includes(f));
-        dragon.style.display = match || activeFilters.length === 0 ? "block" : "none";
-      });
-    });
-  });
-</script>
-
-<p style="margin-top:40px;"><a href="../index.html">← トップページに戻る</a></p>
-
-</body>
-</html>
+       
