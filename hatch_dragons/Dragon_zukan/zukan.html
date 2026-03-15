@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ドラゴン図鑑</title>
+
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 20px;
+    background: #fafafa;
+  }
+
+  h1 {
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+  }
+
+  details {
+    margin-bottom: 10px;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .filter-btn {
+    margin: 5px;
+    padding: 6px 12px;
+    border: none;
+    background: #d0e8ff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .filter-btn.active {
+    background: #a0d0ff;
+  }
+
+  .dragon {
+    padding: 10px;
+    margin: 5px 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .dragon img {
+    width: 120px;
+    border-radius: 6px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>ドラゴン図鑑</h1>
+
+<!-- グループ -->
+<details>
+  <summary>グループで絞り込み</summary>
+  <button class="filter-btn" data-filter="forest">森林</button>
+  <button class="filter-btn" data-filter="mountain">山</button>
+  <button class="filter-btn" data-filter="lake">湖</button>
+</details>
+
+<!-- レアリティ -->
+<details>
+  <summary>レアリティで絞り込み</summary>
+  <button class="filter-btn" data-filter="common">コモン</button>
+  <button class="filter-btn" data-filter="rare">レア</button>
+  <button class="filter-btn" data-filter="epic">エピック</button>
+</details>
+
+<!-- 属性 -->
+<details>
+  <summary>属性で絞り込み</summary>
+  <button class="filter-btn" data-filter="fire">炎</button>
+  <button class="filter-btn" data-filter="water">水</button>
+  <button class="filter-btn" data-filter="dark">闇</button>
+</details>
+
+<hr>
+
+<div class="dragon-list">
+
+  <div class="dragon" data-tags="forest common">
+    <p>ロックテイル（森林 / コモン）</p>
+    <img src="../dragon/img/rocktail.jpeg">
+  </div>
+
+  <div class="dragon" data-tags="forest common">
+    <p>ウッドピップ（森林 / コモン）</p>
+    <img src="../dragon/img/woodpip.jpeg">
+  </div>
+
+  <div class="dragon" data-tags="mountain fire rare">
+    <p>フレイムホーン（山 / レア / 炎）</p>
+    <img src="../dragon/img/flamehorn.jpeg">
+  </div>
+
+  <div class="dragon" data-tags="lake water common">
+    <p>アクアリング（湖 / コモン / 水）</p>
+    <img src="../dragon/img/aquaring.jpeg">
+  </div>
+
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const dragons = document.querySelectorAll('.dragon');
+
+  let activeFilters = [];
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      // ON/OFF
+      if (activeFilters.includes(filter)) {
+        activeFilters = activeFilters.filter(f => f !== filter);
+        btn.classList.remove("active");
+      } else {
+        activeFilters.push(filter);
+        btn.classList.add("active");
+      }
+
+      // 絞り込み
+      dragons.forEach(dragon => {
+        const tags = dragon.dataset.tags.split(" ");
+        const match = activeFilters.every(f => tags.includes(f));
+        dragon.style.display = match || activeFilters.length === 0 ? "block" : "none";
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
